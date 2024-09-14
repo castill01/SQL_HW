@@ -1,0 +1,8 @@
+--#Average Credit Limit by State in USA
+SELECT       state
+      ,avg(cast(creditLimit as int)) average_credit_limit
+  FROM customers
+WHERE country = 'USA'
+group by state
+;
+

@@ -1,0 +1,13 @@
+/*Query 2: Customers Outside of the USA with "Collect" in Their Name
+Write a query that gets the customer name, state, and country, for all customers outside of the USA with "Collect" as part of their customer name.
+We are looking for customers with names like "Australian Collectors, Co." or "BG&E Collectables", where country is not "USA".
+*/
+
+SELECT customerName,
+       state,
+       country
+FROM customers
+WHERE  (Upper(customerName) like '%COLLECT%'
+or upper(customerName) like 'COLLECT%')
+and country not like 'USA'
+;

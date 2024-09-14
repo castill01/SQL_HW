@@ -1,0 +1,22 @@
+/*
+Q.5 Select the Employee Number, First Name, Last Name, 
+and Number of Customers for Employees Whose Customers Have an Average Credit Limit Over 15K
+*/
+with avgCustLimitOverX as (
+SELECT salesRepEmployeeNumber, avg(creditLimit) avgCreditLimit
+FROM CUSTOMERS 
+GROUP BY salesRepEmployeeNumber
+)
+SELECT 
+ e.employeeNumber
+,e.firstName
+,e.lastName
+,count(distinct c.customerNumber) count_cust
+FROM employees e 
+join avgCustLimitOverX x on e.employeeNumber = x.salesRepEmployeeNumber
+join customers c on e.employeeNumber = c.salesRepEmployeeNumber
+WHERE x.avgCreditLimit > 15000
+GROUP BY  e.employeeNumber
+,e.firstName
+,e.lastName
+Order by 1;

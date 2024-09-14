@@ -1,0 +1,25 @@
+--#Find products ordered by fewer than 20 customers 
+----#The customer number will lead to the emp#, pull in join for product code
+with fewProductsOrdered as (
+SELECT od.productCode 
+FROM orderdetails od
+JOIN orders o ON od.orderNumber = o.orderNumber
+GROUP BY od.productCode
+HAVING COUNT(DISTINCT o.customerNumber) < 20
+)
+,custnumWithFewProdOrd as (
+SELECT  od.productCode, o.customerNumber
+FROM fewProductsOrdered fp
+JOIN orderdetails od ON fp.productCode = od.productCode
+JOIN orders o ON od.orderNumber = o.orderNumber
+)
+,findEmp as (
+SELECT cpo.customerNumber, c.salesRepEmployeeNumber
+FROM custnumWithFewProdOrd cpo
+JOIN customers c ON cpo.customerNumber = c.customerNumber
+)
+SELECT distinct e.employeeNumber, e.firstname, e.lastname, e.officecode, o.city as office_city
+FROM employees e
+JOIN findEmp f ON f.salesRepEmployeeNumber = e.employeeNumber
+JOIN offices o ON o.officeCode = e.officeCode
+;

@@ -1,0 +1,12 @@
+
+/*
+Write a query that gets the contact first name, contact last name, phone number, address line 1, and credit limit for all customers in California with a credit limit greater than 25000.00.
+(California means that the state value is 'CA'.)
+*/
+
+select 
+ contactFirstName, contactLastName, phone, addressLine1,cast(creditLimit as int) credit_limit
+from customers
+where cast(creditLimit as int) >=25000
+ and state = 'CA'
+order by cast(creditLimit as int) desc;

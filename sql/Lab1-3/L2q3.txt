@@ -1,0 +1,16 @@
+/*
+q3 Select the 
+Product Name and 
+the Total Number of People Who Have Ordered Each Product
+
+*/
+SELECT
+    p.productName
+    ,count(distinct customerNumber) uniq_cust_totals
+FROM orderdetails od
+JOIN orders o on o.orderNumber=od.orderNumber
+JOIN products p on od.productCode = p.productCode
+GROUP BY
+    p.productName
+    --, p.productCode
+;

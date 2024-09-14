@@ -1,0 +1,24 @@
+--=6 Select the three youngest dogs
+with RankedDogs as (
+select 
+id, name, age, gender, breed, temperament, hungry
+,ROW_NUMBER() OVER(ORDER BY age ASC) as rn
+from dogs
+)
+SELECT 
+  id
+ ,name
+ ,age
+ ,gender
+ ,breed
+ ,temperament
+ ,hungry 
+FROM RankedDogs
+WHERE rn <=(
+ select count(*) 
+ from (
+  select distinct age 
+  from dogs 
+  order by age asc limit 3)
+  );
+;

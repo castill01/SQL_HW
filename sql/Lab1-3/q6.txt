@@ -1,0 +1,20 @@
+/*Query 6: Total Payments
+Write a query that uses JOIN statements to get top 10 customers in terms of total payment amount. Find the customer name, customer number, and sum of all payments made. The results should be ordered by the sum of payments made, starting from the highest value.
+The three columns selected should be customerName, customerNumber and total_payment_amount.
+*/
+with sum_pay_cust as (
+SELECT 
+   customerNumber
+  ,round(sum(amount),2) total_payment_amount 
+FROM payments
+group by customerNumber
+)
+SELECT 
+   c.customerName
+  ,p.customerNumber
+  ,p.total_payment_amount
+from sum_pay_cust p
+left join customers c
+on p.customerNumber = c.customerNumber
+order by 3 desc
+limit 10

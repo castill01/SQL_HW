@@ -1,0 +1,5 @@
+SELECT 
+   name
+FROM dogs
+order by 1
+;

@@ -1,0 +1,25 @@
+/*Query 8: Employees in Offices with Fewer than Five Employees
+Finally, get the first name, last name, employee number, 
+and office code for employees from offices with fewer than 5 employees.
+Hint: Use a subquery to find the relevant offices.addressLine1WITH officeCount AS (
+*/
+with officeCount as(
+    SELECT 
+       officeCode
+       ,count(*)
+    FROM employees
+    GROUP BY officeCode
+    HAVING count(*) < 5
+)
+
+SELECT 
+       e.lastName,
+       e.firstName,
+       e.employeeNumber,
+       e.officeCode
+FROM employees e
+JOIN officeCount oc
+on e.officeCode = oc.officeCode 
+
+
+

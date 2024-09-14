@@ -1,0 +1,7 @@
+--=8Select the name, age, and hungry columns for hungry dogs between the ages of two and seven. This query should also list these dogs in alphabetical order.
+SELECT 
+name,age, hungry
+FROM dogs
+WHERE age between 2 and 7
+order by 1 asc
+;

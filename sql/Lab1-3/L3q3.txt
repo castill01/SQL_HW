@@ -1,0 +1,6 @@
+SELECT 
+    *
+FROM dogs
+WHERE age in ( select max(age) from dogs)
+
+;

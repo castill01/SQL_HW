@@ -1,0 +1,15 @@
+/*
+Query 3: Customers without Null States
+Write a query that gets the full address (line 1, line 2, city, state, postal code, country) for all customers where the state field is not null.
+Here we'll only display the first 10 results.
+*/
+
+SELECT 
+       addressLine1,
+       addressLine2,
+       city,
+       state,
+       postalCode,
+       country
+  FROM customers
+WHERE state is not null;

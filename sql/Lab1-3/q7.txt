@@ -1,0 +1,31 @@
+/*
+Query 7: Products that Have Been Purchased 10 or More Times
+Write a query that, for each customer, finds all of the products that they have purchased 10 or more times cumulatively. For each record, return the customer name, customer number, product name, product code, and total number ordered. Sort the rows in ascending order by the quantity ordered.
+The five columns selected should be customerName, customerNumber, productName, productCode, and total_ordered, where total_ordered is the sum of all quantities of that product ordered by that customer.
+Hint: For this one, you'll need to make use of HAVING, GROUP BY, and ORDER BY — make sure you get the order of them correct!
+*/
+
+--with ten_products as (
+SELECT 
+    c.customerName
+    ,o.customerNumber
+    ,p.productName
+    ,p.productCode
+    ,SUM(od.quantityOrdered) AS total_ordered
+FROM 
+    orders o
+JOIN 
+    orderDetails od ON o.orderNumber = od.orderNumber
+JOIN 
+    products p ON p.productCode = od.productCode
+JOIN 
+    customers c ON c.customerNumber = o.customerNumber
+GROUP BY 
+    c.customerName,
+    o.customerNumber,
+    p.productName,
+    p.productCode
+HAVING 
+    SUM(od.quantityOrdered) >= 10
+ORDER BY 
+    5 ASC, 2;

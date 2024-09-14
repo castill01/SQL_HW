@@ -1,0 +1,7 @@
+--=7 Select the three youngest dogs
+SELECT 
+name, breed
+from dogs
+FROM RankedDogs
+WHERE age between 5 and 10
+;

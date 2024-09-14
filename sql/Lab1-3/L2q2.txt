@@ -1,0 +1,16 @@
+/*
+Q.2 Select the Total Number of Orders for Each Product Name
+Sort the results by the total number of items sold for that product.
+
+*/
+SELECT
+    p.productName
+    ,p.productCode
+    ,SUM(od.quantityOrdered) AS total_items_sold
+FROM orderdetails od
+JOIN products p 
+ ON od.productCode = p.productCode
+GROUP BY
+    p.productName, p.productCode
+ORDER BY
+    p.productCode,total_items_sold DESC;

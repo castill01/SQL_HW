@@ -1,0 +1,6 @@
+SELECT 
+   name
+  ,breed
+FROM dogs
+WHERE gender = 'F'
+;

@@ -1,0 +1,17 @@
+/*Q1 Write an Equivalent Query using a Subquery
+The following query works using a JOIN. Rewrite it so that it uses a subquery instead.
+*/
+
+SELECT 
+   c.customerNumber
+  ,c.contactLastName
+  ,c.contactFirstName
+FROM 
+   customers c
+WHERE 
+   c.customerNumber IN (
+        SELECT o.customerNumber
+        FROM orders o
+        WHERE o.orderDate = '2003-01-31'
+   )
+;

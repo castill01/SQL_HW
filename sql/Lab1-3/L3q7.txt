@@ -1,0 +1,6 @@
+--=7 Select the three youngest dogs
+SELECT 
+name, breed
+FROM dogs
+WHERE age between 5 and 10
+;

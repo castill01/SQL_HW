@@ -1,0 +1,9 @@
+Select 
+ c.customerName
+,o.orderNumber
+,o.status
+FROM orders o
+left join customers c
+on o.customerNumber = c.customerNumber
+order by 1
+limit 15
